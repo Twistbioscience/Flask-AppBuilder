@@ -823,7 +823,7 @@ class BaseSecurityManager(AbstractSecurityManager):
         """
         if 'username' in userinfo:
             user = self.find_user(username=userinfo['username'])
-        elif 'email' in userinfo:
+        if not user and 'email' in userinfo:
             user = self.find_user(email=userinfo['email'])
         else:
             log.error('User info does not have username or email {0}'.format(userinfo))
